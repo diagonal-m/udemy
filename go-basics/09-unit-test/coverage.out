@@ -1,0 +1,6 @@
+mode: set
+go-basics/09-unit-test/main.go:3.24,5.2 1 1
+go-basics/09-unit-test/main.go:6.31,7.12 1 1
+go-basics/09-unit-test/main.go:7.12,9.3 1 1
+go-basics/09-unit-test/main.go:10.2,10.32 1 1
+go-basics/09-unit-test/main.go:13.14,16.2 0 0
