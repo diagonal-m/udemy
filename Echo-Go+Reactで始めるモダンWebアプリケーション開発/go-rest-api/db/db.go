@@ -10,6 +10,9 @@ import (
 	"gorm.io/gorm"
 )
 
+// NOTE: gormを使うとデータベースを起動したときに、
+//
+//	gormパッケージで定義されているDBという構造体の実体のアドレスが返る
 func NewDB() *gorm.DB {
 	// 環境変数GO_ENVがdevの場合はgodotenv.Load()を呼び出して.envの内容を読み込む
 	if os.Getenv("GO_ENV") == "dev" {
@@ -22,6 +25,7 @@ func NewDB() *gorm.DB {
 		os.Getenv("POSTGRES_PW"), os.Getenv("POSTGRES_HOST"),
 		os.Getenv("POSTGRES_PORT"), os.Getenv("POSTGRES_DB"))
 
+	// gorm.OpenでDBに接続する
 	db, err := gorm.Open(postgres.Open(url), &gorm.Config{})
 	if err != nil {
 		log.Fatalln(err)
