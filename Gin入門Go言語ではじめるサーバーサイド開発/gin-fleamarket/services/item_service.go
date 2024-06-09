@@ -12,23 +12,23 @@ type IItemService interface {
 	Create(CreateItemInput dto.CreateItemInput) (*models.Item, error)
 }
 
-type ItemSercice struct {
+type ItemService struct {
 	repository repositories.IItemRepository
 }
 
 func NewItemService(repository repositories.IItemRepository) IItemService {
-	return &ItemSercice{repository: repository}
+	return &ItemService{repository: repository}
 }
 
-func (s *ItemSercice) FindAll() (*[]models.Item, error) {
+func (s *ItemService) FindAll() (*[]models.Item, error) {
 	return s.repository.FindAll()
 }
 
-func (s *ItemSercice) FindById(itemId uint) (*models.Item, error) {
+func (s *ItemService) FindById(itemId uint) (*models.Item, error) {
 	return s.repository.FindById(itemId)
 }
 
-func (s *ItemSercice) Create(CreateItemInput dto.CreateItemInput) (*models.Item, error) {
+func (s *ItemService) Create(CreateItemInput dto.CreateItemInput) (*models.Item, error) {
 	newItem := models.Item{
 		Name:        CreateItemInput.Name,
 		Price:       CreateItemInput.Price,
