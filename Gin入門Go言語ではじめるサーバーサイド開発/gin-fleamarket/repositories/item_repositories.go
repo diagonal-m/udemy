@@ -80,8 +80,21 @@ func (r *ItemRepository) Create(newItem models.Item) (*models.Item, error) {
 }
 
 // Delete implements IItemRepository.
-func (i *ItemRepository) Delete(itemId uint) error {
-	panic("unimplemented")
+func (r *ItemRepository) Delete(itemId uint) error {
+	deleteItem, err := r.FindById(itemId)
+	if err != nil {
+		return nil
+	}
+
+	// GromのDeleteメソッドはデフォルトでは論理削除が行われる
+	// recordのdeletedAtに時刻が更新される
+	result := r.db.Delete(&deleteItem)
+	// 物理削除
+	// result := r.db.Unscoped().Delete(&deleteItem)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
 }
 
 // FindAll implements IItemRepository.
